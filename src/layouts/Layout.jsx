@@ -30,7 +30,7 @@ export default function Example() {
 
   return (
     <>
-      <div>
+      <div data-testid="sidebar">
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog
             as="div"
@@ -74,6 +74,7 @@ export default function Example() {
                         type="button"
                         className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                         onClick={() => setSidebarOpen(false)}
+                        data-testid="bars3-close"
                       >
                         <span className="sr-only">Close sidebar</span>
                         <XMarkIcon
@@ -202,6 +203,7 @@ export default function Example() {
               type="button"
               className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
               onClick={() => setSidebarOpen(true)}
+              data-testid="bars3-open"
             >
               <span className="sr-only">Open sidebar</span>
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
