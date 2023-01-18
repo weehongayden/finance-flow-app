@@ -1,24 +1,16 @@
-import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
-  CalendarIcon,
-  ChartBarIcon,
-  FolderIcon,
   HomeIcon,
-  InboxIcon,
   UsersIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { Outlet } from "react-router-dom";
+import { Fragment, useState } from "react";
+import { NavLink, Outlet } from "react-router-dom";
 
 const navigation = [
-  { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Team", href: "#", icon: UsersIcon, current: false },
-  { name: "Projects", href: "#", icon: FolderIcon, current: false },
-  { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
-  { name: "Documents", href: "#", icon: InboxIcon, current: false },
-  { name: "Reports", href: "#", icon: ChartBarIcon, current: false },
+  { name: "Dashboard", href: "/", icon: HomeIcon, current: true },
+  { name: "About", href: "/about", icon: UsersIcon, current: false },
 ];
 
 function classNames(...classes) {
@@ -94,22 +86,24 @@ export default function Example() {
                     </div>
                     <nav className="mt-5 space-y-1 px-2">
                       {navigation.map((item) => (
-                        <a
+                        <NavLink
                           key={item.name}
-                          href={item.href}
-                          className={classNames(
-                            item.current
-                              ? "bg-indigo-800 text-white"
-                              : "text-white hover:bg-indigo-600 hover:bg-opacity-75",
-                            "group flex items-center px-2 py-2 text-base font-medium rounded-md"
-                          )}
+                          to={item.href}
+                          className={({ isActive }) =>
+                            classNames(
+                              isActive
+                                ? "bg-indigo-800 text-white"
+                                : "text-white hover:bg-indigo-600 hover:bg-opacity-75",
+                              "group flex items-center px-2 py-2 text-base font-medium rounded-md"
+                            )
+                          }
                         >
                           <item.icon
                             className="mr-4 h-6 w-6 flex-shrink-0 text-indigo-300"
                             aria-hidden="true"
                           />
                           {item.name}
-                        </a>
+                        </NavLink>
                       ))}
                     </nav>
                   </div>
@@ -157,22 +151,24 @@ export default function Example() {
               </div>
               <nav className="mt-5 flex-1 space-y-1 px-2">
                 {navigation.map((item) => (
-                  <a
+                  <NavLink
                     key={item.name}
-                    href={item.href}
-                    className={classNames(
-                      item.current
-                        ? "bg-indigo-800 text-white"
-                        : "text-white hover:bg-indigo-600 hover:bg-opacity-75",
-                      "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-                    )}
+                    to={item.href}
+                    className={({ isActive }) =>
+                      classNames(
+                        isActive
+                          ? "bg-indigo-800 text-white"
+                          : "text-white hover:bg-indigo-600 hover:bg-opacity-75",
+                        "group flex items-center px-2 py-2 text-base font-medium rounded-md"
+                      )
+                    }
                   >
                     <item.icon
                       className="mr-3 h-6 w-6 flex-shrink-0 text-indigo-300"
                       aria-hidden="true"
                     />
                     {item.name}
-                  </a>
+                  </NavLink>
                 ))}
               </nav>
             </div>

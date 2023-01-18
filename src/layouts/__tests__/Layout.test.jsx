@@ -1,5 +1,6 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { BrowserRouter } from "react-router-dom";
 import { beforeEach, describe, expect, vi } from "vitest";
 
 import Layout from "../Layout";
@@ -12,7 +13,11 @@ window.IntersectionObserver = vi.fn(() => ({
 
 describe("<Layout />", () => {
   beforeEach(() => {
-    render(<Layout></Layout>);
+    render(
+      <BrowserRouter>
+        <Layout />
+      </BrowserRouter>
+    );
   });
 
   test("should have the sidebar open by default", () => {
@@ -22,7 +27,7 @@ describe("<Layout />", () => {
     });
   });
 
-  test("should hide sidebar in smaller screen size", () => {
+  test("should toggle the sidebar in smaller screen size", () => {
     Object.defineProperty(window, "innerWidth", {
       writable: true,
       configurable: true,
